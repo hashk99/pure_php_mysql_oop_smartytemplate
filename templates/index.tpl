@@ -3,13 +3,13 @@
 {/elseif $name eq "php"}
  <span>Its php</span>
 {/else}
- <span>Its neither smarty nor php</span>
+ <span>Its neither smarty nor php </span>
 {/if}
  
 //foreach loop
 {foreach $articles as $article}
-<h2>{$article->title}</h2>
-<p>{$article->description}</p>
+<h2>{$article['title']}</h2>
+<p>{$article['description']}</p>
 {/foreach}
  
 //section, alternative of foreach

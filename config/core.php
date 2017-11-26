@@ -10,10 +10,24 @@ define("ASSETS_PATH", '/public/assets');
 //initiate smarty
 require_once('../'.PHPLIB_PATH.'/smarty-3.1.30/libs/Smarty.class.php');
   
-$smarty = new Smarty();
-$smarty->setTemplateDir($_SERVER['DOCUMENT_ROOT'].'/purephpsmarty/templates/');
-$smarty->setCompileDir($_SERVER['DOCUMENT_ROOT'].'/www/purephpsmarty/templates_c/');
-$smarty->setConfigDir($_SERVER['DOCUMENT_ROOT'].'/www/purephpsmarty/config/');
-$smarty->setCacheDir($_SERVER['DOCUMENT_ROOT'].'/purephpsmarty/cache/');
 
-$smarty->caching = 0;       
+class MySmarty extends Smarty {
+
+   function __construct()
+   {
+
+        // Class Constructor.
+        // These automatically get set with each new instance.
+
+        parent::__construct();
+
+		$this->setTemplateDir($_SERVER['DOCUMENT_ROOT'].'/purephpsmarty/templates/');
+		$this->setCompileDir($_SERVER['DOCUMENT_ROOT'].'/purephpsmarty/templates_c/');
+		$this->setConfigDir($_SERVER['DOCUMENT_ROOT'].'/purephpsmarty/config/');
+		$this->setCacheDir($_SERVER['DOCUMENT_ROOT'].'/purephpsmarty/cache/');
+
+        $this->caching = Smarty::CACHING_LIFETIME_CURRENT;
+        $this->assign('app_name', 'Guest Book');
+   }
+
+}    
